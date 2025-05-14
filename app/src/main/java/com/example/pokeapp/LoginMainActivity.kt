@@ -3,12 +3,14 @@ package com.example.pokeapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.pokeapp.data.models.ModelPokemon
 import com.example.pokeapp.databinding.ActivityLoginMainBinding
 import com.example.pokeapp.ui.activities.AppActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -22,6 +24,7 @@ import com.google.firebase.ktx.Firebase
 class LoginMainActivity : AppCompatActivity() {
 
     private val responseLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { it ->
+        Log.d("GOOGLE_LOGIN", "Resultado del intent recibido")
         if (it.resultCode == RESULT_OK) {
             val datos = GoogleSignIn.getSignedInAccountFromIntent(it.data)
             try {
@@ -43,6 +46,7 @@ class LoginMainActivity : AppCompatActivity() {
             }
         }
         if (it.resultCode == RESULT_CANCELED) {
+            Log.d("LoginMal", "No va el login")
             Toast.makeText(this, "El usuario canceló", Toast.LENGTH_SHORT).show()
         }
     }
@@ -68,9 +72,7 @@ class LoginMainActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
-        /*binding.btnSalir.setOnClickListener {
-            finish()
-        }*/
+
         binding.btnLogin.setOnClickListener {
             login()
         }
@@ -78,6 +80,7 @@ class LoginMainActivity : AppCompatActivity() {
             registrar()
         }
         binding.btnGoogle.setOnClickListener {
+            Log.d("GOOGLE_LOGIN", "Botón de Google presionado")
             loginGoogle()
         }
     }
@@ -118,7 +121,6 @@ class LoginMainActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email,password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    // all (si pongo t0do se pone amarillo y no me gusta eso) ha ido bien
                     irActivityApp()
                 }
             }
@@ -135,10 +137,11 @@ class LoginMainActivity : AppCompatActivity() {
             .build()
         val googleClient = GoogleSignIn.getClient(this, googleConf)
 
-        googleClient.signOut() // Fundamental para que no haga login automatico si he cerrado sesion
+            googleClient.signOut() // Fundamental para que no haga login automatico si he cerrado sesion
         // Basicamente sirve para que te permita registrarte con mas de una cuenta de google.
-
+        Log.d("GOOGLE_LOGIN", "Lanzando intent de Google")
         responseLauncher.launch(googleClient.signInIntent)
+
     }
 
     private fun irActivityApp(){
@@ -154,7 +157,7 @@ class LoginMainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val usuario = auth.currentUser
-        if (usuario != null) irActivityApp()
+        //val usuario = auth.currentUser
+        //if (usuario != null) irActivityApp()
     }
 }
