@@ -7,7 +7,8 @@ import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -58,6 +59,32 @@ class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         iniciarFramentMapa()
         iniciarFragmentMenu()
+        personalizarSpinner()
+    }
+
+    private fun personalizarSpinner() {
+        val spinnerAnios: Spinner = findViewById(R.id.spinner_anios)
+        val spinnerMeses: Spinner = findViewById(R.id.spinner_meses)
+
+        val opcionesAnios = resources.getStringArray(R.array.array_anios)
+        val opcionesMeses = resources.getStringArray(R.array.array_meses)
+
+        val adapterAnios = ArrayAdapter(
+            this,
+            R.layout.spinner_item,
+            opcionesAnios
+        )
+        adapterAnios.setDropDownViewResource(R.layout.spinner_dropdown_item) // layout para el desplegable
+        spinnerAnios.adapter = adapterAnios
+
+        val adapterMeses = ArrayAdapter(
+            this,
+            R.layout.spinner_item,
+            opcionesMeses
+        )
+        adapterMeses.setDropDownViewResource(R.layout.spinner_dropdown_item) // layout para el desplegable
+
+        spinnerMeses.adapter = adapterMeses
     }
 
     private fun mensajesMarcadores() {

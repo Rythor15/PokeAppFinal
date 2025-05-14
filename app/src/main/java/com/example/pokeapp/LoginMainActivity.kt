@@ -157,7 +157,7 @@ class LoginMainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        //val usuario = auth.currentUser
-        //if (usuario != null) irActivityApp()
+        val usuario = auth.currentUser
+        if (usuario != null) irActivityApp()
     }
 }
