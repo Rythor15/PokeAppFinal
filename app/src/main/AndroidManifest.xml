@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <application
         android:allowBackup="true"
@@ -14,6 +17,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PokeApp"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/cloud_id_2"
+            />
+        <activity
+            android:name=".ui.activities.EquipoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.GamesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.CompeticionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.AppActivity"
+            android:exported="false" />
         <activity
             android:name=".LoginMainActivity"
             android:exported="true">

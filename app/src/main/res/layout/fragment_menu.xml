@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.MenuFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageButton
+            android:id="@+id/btn_teams"
+            android:layout_width="132dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_auto_stories_24"
+            app:layout_constraintBottom_toBottomOf="@+id/btm_games"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btm_games"
+            app:layout_constraintTop_toTopOf="@+id/btm_games" />
+
+        <ImageButton
+            android:id="@+id/btn_maps"
+            android:layout_width="132dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:src="@drawable/baseline_map_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btm_games"
+            android:layout_width="132dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_videogame_asset_24"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_maps"
+            app:layout_constraintStart_toEndOf="@+id/btn_maps"
+            app:layout_constraintTop_toTopOf="@+id/btn_maps" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

@@ -9,14 +9,17 @@
     </item>
 
     <!-- Mitad superior roja -->
-    <item android:top="0dp" android:bottom="50%">
-        <shape android:shape="rectangle">
+    <item android:top="1dp" android:bottom="1dp">
+        <shape
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shape="oval">
             <solid android:color="#FF0000" />
         </shape>
     </item>
 
     <!-- Línea negra horizontal en el medio -->
-    <item android:top="49%" android:bottom="51%">
+    <item android:top="0dp" android:bottom="0dp">
         <shape android:shape="rectangle">
             <solid android:color="#000000" />
         </shape>
@@ -46,5 +49,4 @@
         </shape>
         <gravity android:gravity="center" />
     </item>
-
 </layer-list>
