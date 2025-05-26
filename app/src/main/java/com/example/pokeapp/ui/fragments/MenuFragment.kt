@@ -2,15 +2,13 @@ package com.example.pokeapp.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
-import androidx.fragment.app.commit
 import com.example.pokeapp.R
+import com.example.pokeapp.ui.activities.AppActivity
 import com.example.pokeapp.ui.activities.CompeticionActivity
 import com.example.pokeapp.ui.activities.EquipoActivity
 import com.example.pokeapp.ui.activities.GamesActivity
@@ -27,19 +25,39 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val btnMaps = view.findViewById<ImageButton>(R.id.btn_maps)
-        val btnGames = view.findViewById<ImageButton>(R.id.btm_games)
+        val btnGames = view.findViewById<ImageButton>(R.id.btn_games)
         val btnTeams = view.findViewById<ImageButton>(R.id.btn_teams)
+        val btnHome = view.findViewById<ImageButton>(R.id.btn_home)
+
+        val currentActivity = requireActivity()::class.java
+
+        btnMaps.isEnabled = currentActivity != CompeticionActivity::class.java
+        btnGames.isEnabled = currentActivity != GamesActivity::class.java
+        btnTeams.isEnabled = currentActivity != EquipoActivity::class.java
+        btnHome.isEnabled = currentActivity != AppActivity::class.java
 
         btnMaps.setOnClickListener {
-            startActivity(Intent(requireContext(), CompeticionActivity::class.java))
+            if (currentActivity != CompeticionActivity::class.java) {
+                startActivity(Intent(requireContext(), CompeticionActivity::class.java))
+            }
         }
 
         btnGames.setOnClickListener {
-            startActivity(Intent(requireContext(), GamesActivity::class.java))
+            if (currentActivity != GamesActivity::class.java) {
+                startActivity(Intent(requireContext(), GamesActivity::class.java))
+            }
         }
 
         btnTeams.setOnClickListener {
-            startActivity(Intent(requireContext(), EquipoActivity::class.java))
+            if (currentActivity != EquipoActivity::class.java) {
+                startActivity(Intent(requireContext(), EquipoActivity::class.java))
+            }
+        }
+
+        btnHome.setOnClickListener {
+            if (currentActivity != AppActivity::class.java) {
+                startActivity(Intent(requireContext(), AppActivity::class.java))
+            }
         }
     }
 }

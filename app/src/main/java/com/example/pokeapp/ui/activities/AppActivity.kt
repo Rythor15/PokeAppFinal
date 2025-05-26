@@ -6,8 +6,12 @@ import android.widget.EditText
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.children
+import androidx.core.view.get
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.commit
 import com.example.pokeapp.LoginMainActivity
 import com.example.pokeapp.R
@@ -24,6 +28,7 @@ class AppActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAppBinding
     private lateinit var auth: FirebaseAuth
     private var nombre = ""
+    private lateinit var drawerLayout: DrawerLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +42,7 @@ class AppActivity : AppCompatActivity() {
             insets
         }
         iniciarFragment()
+        drawerLayout = binding.drawerLayout
         auth = Firebase.auth
         setListeners()
     }
@@ -58,6 +64,18 @@ class AppActivity : AppCompatActivity() {
         binding.navigationView.menu.getItem(1).setOnMenuItemClickListener {
             finishAffinity()
             true
+        }
+        binding.btnInformacion.setOnClickListener {
+            startActivity(Intent(this, CompeticionActivity::class.java))
+        }
+        binding.btnJuegos.setOnClickListener {
+            startActivity(Intent(this, GamesActivity::class.java))
+        }
+        binding.btnEquipos.setOnClickListener {
+            startActivity(Intent(this, EquipoActivity::class.java))
+        }
+        binding.imgMenu.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
         }
     }
 }

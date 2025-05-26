@@ -3,8 +3,6 @@ package com.example.pokeapp.ui.activities
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.hardware.Sensor
-import android.hardware.SensorManager
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.ArrayAdapter
@@ -22,12 +20,15 @@ import androidx.fragment.app.commit
 import com.example.pokeapp.R
 import com.example.pokeapp.databinding.ActivityCompeticionBinding
 import com.example.pokeapp.ui.fragments.MenuFragment
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+
+
+// Hay que poner la fecha como parametro en el método ponerMarcador()
+// Para poder hacer el filtro con los calendarios
 
 class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -91,16 +92,16 @@ class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
         map.setOnMarkerClickListener {
             var value = it.title.toString()
             when (value) {
-                "Mundial Pokemon 2025" -> {
-                    Toast.makeText(this, String.format(getString(R.string.texto_toast) + " " + value), Toast.LENGTH_SHORT).show()
+                " Mundial Pokemon 2025" -> {
+                    Toast.makeText(this, String.format(getString(R.string.texto_toast) + " " + value), Toast.LENGTH_LONG).show()
                     true
                 }
-                "Regional Pokemon Europa Reino Unido" -> {
-                    Toast.makeText(this, String.format(getString(R.string.texto_toast) + value), Toast.LENGTH_SHORT).show()
+                " Regional Pokemon Europa Reino Unido" -> {
+                    Toast.makeText(this, String.format(getString(R.string.texto_toast) + value), Toast.LENGTH_LONG).show()
                     true
                 }
-                "Regional Pokemon Europa Suecia" -> {
-                    Toast.makeText(this, String.format(getString(R.string.texto_toast) + value), Toast.LENGTH_SHORT).show()
+                " Regional Pokemon Europa Suecia" -> {
+                    Toast.makeText(this, String.format(getString(R.string.texto_toast) + value), Toast.LENGTH_LONG).show()
                     true
                 }
                 else -> {
@@ -115,7 +116,7 @@ class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
         val fragmentMenu = MenuFragment()
         supportFragmentManager.commit {
             setReorderingAllowed(true)
-            add(R.id.menu_fragment_mapa, fragmentMenu)
+            add(R.id.menu_fragment, fragmentMenu)
         }
     }
 
@@ -133,24 +134,15 @@ class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
         map = p0
         map.uiSettings.isZoomControlsEnabled=true
         gestionarLocalizacion()
-        ponerMarcador(LatLng(33.82475463077455, -117.90661939520065), "Mundial Pokemon 2025")
-        ponerMarcador(LatLng(52.44851528365187, -1.7185531875234843), "Regional Pokemon Europa Reino Unido")
-        ponerMarcador(LatLng(59.277428636742854, 18.01492628216522), "Regional Pokemon Europa Suecia")
-        mostrarLugarTorneo(LatLng(33.82475463077455, -117.90661939520065), 10f)
+        ponerMarcador(LatLng(33.82475463077455, -117.90661939520065), " Mundial Pokemon 2025")
+        ponerMarcador(LatLng(52.44851528365187, -1.7185531875234843), " Regional Pokemon Europa Reino Unido")
+        ponerMarcador(LatLng(59.277428636742854, 18.01492628216522), " Regional Pokemon Europa Suecia")
         mensajesMarcadores()
     }
 
     private fun ponerMarcador(coordenadas: LatLng, titulo: String) {
         val marker = MarkerOptions().position(coordenadas).title(titulo)
         map.addMarker(marker)
-    }
-
-    private fun mostrarLugarTorneo(coordenadas: LatLng, zoom: Float) {
-        map.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(coordenadas,zoom),
-            3500,
-            null
-        )
     }
 
     private fun gestionarLocalizacion() {
@@ -195,7 +187,7 @@ class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun mostrarExplicacion() {
         AlertDialog.Builder(this)
             .setTitle("Permisos de Ubicacion")
-            .setMessage("Para el uso adecuado de esta increible aplicacion necesitamos permisos de ubicacion ")
+            .setMessage("Debe aceptar los permisos de ubicación para usar la aplicación")
             .setNegativeButton("Cancelar") {
                     dialog, _ -> dialog.dismiss()
             }
