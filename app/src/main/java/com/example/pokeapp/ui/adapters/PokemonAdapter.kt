@@ -10,11 +10,12 @@ import com.example.pokeapp.databinding.LayoutPokemonBinding
 import com.squareup.picasso.Picasso
 
 class PokemonAdapter (
-    var pokeInfo: List<PokemonApi>
+    var pokeInfo: MutableList<PokemonApi>
 ):  RecyclerView.Adapter<ViewHolderPokemon>() {
 
     fun actualizarPokedex(newList: List<PokemonApi>) {
-        pokeInfo = newList
+        pokeInfo.clear()
+        pokeInfo.addAll(newList)
         notifyDataSetChanged()
     }
 

@@ -38,7 +38,7 @@ class EquipoActivity : AppCompatActivity() {
 
     private fun setListener() {
         binding.btnPokemons.setOnClickListener {
-            //startActivity(Intent(this, PokemonsActivity::class.java))
+            startActivity(Intent(this, PokemonsActivity::class.java))
         }
 
 
