@@ -41,15 +41,19 @@ android {
 }
 
 dependencies {
+    //Retorfit y picasso para la Api
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.picasso)
 
+// Worker y Room para la persistencia de los datos que vienen de la Api
     implementation("androidx.room:room-runtime:2.6.1")
     implementation(libs.androidx.work.runtime.ktx)
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
 
+//Refresh swiper para recargar la web
+    implementation(libs.androidx.swiperefreshlayout)
 
     // Firebase BoM para gestionar versiones automáticamente
     implementation(platform("com.google.firebase:firebase-bom:33.6.0"))

@@ -1,5 +1,6 @@
 package com.example.pokeapp.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -30,13 +31,13 @@ class GamesActivity : AppCompatActivity() {
 
     private fun setListeners() {
         binding.btnCandycrush.setOnClickListener {
-
+            startActivity(Intent(this, CandyActivity::class.java))
         }
         binding.btnPareja.setOnClickListener {
-
+                startActivity(Intent(this, ParejasActivity::class.java))
         }
-        binding.btnPokerogue.setOnClickListener {
-
+        binding.btnPokequiz.setOnClickListener {
+            startActivity(Intent(this, PkmnQuizActivity::class.java))
         }
     }
 
