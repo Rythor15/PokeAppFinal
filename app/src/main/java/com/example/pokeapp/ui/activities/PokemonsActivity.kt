@@ -9,8 +9,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pokeapp.R
-import com.example.pokeapp.data.PokemonApi
+import com.example.pokeapp.data.api.PokemonApi
 import com.example.pokeapp.data.api.ObjectApiPokemon.apiClient
+import com.example.pokeapp.data.api.PokemonEntity
+import com.example.pokeapp.data.db.AppDatabase
 import com.example.pokeapp.databinding.ActivityPokemonsBinding
 import com.example.pokeapp.ui.adapters.PokemonAdapter
 import kotlinx.coroutines.Dispatchers
@@ -20,39 +22,26 @@ import kotlinx.coroutines.withContext
 class PokemonsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPokemonsBinding
-    var pokeInfo = mutableListOf<PokemonApi>()
 
-    var adapterGen1 = PokemonAdapter(pokeInfo)
-    var adapterGen2 = PokemonAdapter(pokeInfo)
-    var adapterGen3 = PokemonAdapter(pokeInfo)
-    var adapterGen4 = PokemonAdapter(pokeInfo)
-    var adapterGen5 = PokemonAdapter(pokeInfo)
-    var adapterGen6 = PokemonAdapter(pokeInfo)
-    var adapterGen7 = PokemonAdapter(pokeInfo)
-    var adapterGen8 = PokemonAdapter(pokeInfo)
-    var adapterGen9 = PokemonAdapter(pokeInfo)
+    var adapterGen1 = PokemonAdapter(mutableListOf())
+    var adapterGen2 = PokemonAdapter(mutableListOf())
+    var adapterGen3 = PokemonAdapter(mutableListOf())
+    var adapterGen4 = PokemonAdapter(mutableListOf())
+    var adapterGen5 = PokemonAdapter(mutableListOf())
+    var adapterGen6 = PokemonAdapter(mutableListOf())
+    var adapterGen7 = PokemonAdapter(mutableListOf())
+    var adapterGen8 = PokemonAdapter(mutableListOf())
+    var adapterGen9 = PokemonAdapter(mutableListOf())
 
-    val layoutManagerGen1 = GridLayoutManager(this,10)
-    val layoutManagerGen2 = GridLayoutManager(this,10)
-    val layoutManagerGen3 = GridLayoutManager(this,10)
-    val layoutManagerGen4 = GridLayoutManager(this,10)
-    val layoutManagerGen5 = GridLayoutManager(this,10)
-    val layoutManagerGen6 = GridLayoutManager(this,10)
-    val layoutManagerGen7 = GridLayoutManager(this,10)
-    val layoutManagerGen8 = GridLayoutManager(this,10)
-    val layoutManagerGen9 = GridLayoutManager(this,10)
-
-    val generaciones = mapOf(
-        "Gen 1" to 1..151,
-        "Gen 2" to 152..251,
-        "Gen 3" to 252..386,
-        "Gen 4" to 387..493,
-        "Gen 5" to 494..649,
-        "Gen 6" to 650..721,
-        "Gen 7" to 722..809,
-        "Gen 8" to 810..898,
-        "Gen 9" to 899..1010
-    )
+    val layoutManagerGen1 = GridLayoutManager(this,8)
+    val layoutManagerGen2 = GridLayoutManager(this,8)
+    val layoutManagerGen3 = GridLayoutManager(this,8)
+    val layoutManagerGen4 = GridLayoutManager(this,8)
+    val layoutManagerGen5 = GridLayoutManager(this,8)
+    val layoutManagerGen6 = GridLayoutManager(this,8)
+    val layoutManagerGen7 = GridLayoutManager(this,8)
+    val layoutManagerGen8 = GridLayoutManager(this,8)
+    val layoutManagerGen9 = GridLayoutManager(this,8)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,47 +85,27 @@ class PokemonsActivity : AppCompatActivity() {
         binding.rvGen9.layoutManager = layoutManagerGen9
         binding.rvGen9.adapter = adapterGen9
 
-        capturarPokemon()
+        cargarDesdeRoom()
     }
-    private fun capturarPokemon() {
+
+    private fun cargarDesdeRoom() {
+        val db = AppDatabase.getDatabase(this)
 
         lifecycleScope.launch {
-            generaciones.forEach { (nombreGen, rango) ->
-                    val listaPokemonInfo = mutableListOf<PokemonApi>()
-                    for (i in rango) {
-                        try {
-                            // Obtenemos la información del Pokémon en el hilo IO
-                            val pokemonInfo = withContext(Dispatchers.IO) {
-                                apiClient.getPokemonInfo(i)
-                            }
-                            if (pokemonInfo != null) {
-                                listaPokemonInfo.add(pokemonInfo)
-                            } else {
-                                Log.e("PokemonError", "El Pokémon con ID $i no se pudo obtener")
-                            }
-                        } catch (e: Exception) {
-                            Log.e(
-                                "PokemonError",
-                                "Error al obtener el Pokémon con ID $i: ${e.message}"
-                            )
-                        }
-                    }
-                // Actualizamos la UI inmediatamente después de recibir la respuesta
-                withContext(Dispatchers.Main) {
-                    when (nombreGen) {
-                        "Gen 1" -> adapterGen1.actualizarPokedex(listaPokemonInfo)
-                        "Gen 2" -> adapterGen2.actualizarPokedex(listaPokemonInfo)
-                        "Gen 3" -> adapterGen3.actualizarPokedex(listaPokemonInfo)
-                        "Gen 4" -> adapterGen4.actualizarPokedex(listaPokemonInfo)
-                        "Gen 5" -> adapterGen5.actualizarPokedex(listaPokemonInfo)
-                        "Gen 6" -> adapterGen6.actualizarPokedex(listaPokemonInfo)
-                        "Gen 7" -> adapterGen7.actualizarPokedex(listaPokemonInfo)
-                        "Gen 8" -> adapterGen8.actualizarPokedex(listaPokemonInfo)
-                        "Gen 9" -> adapterGen9.actualizarPokedex(listaPokemonInfo)
-                    }
+            adapterGen1.actualizarPokedex(db.pokemonDao().getGeneration(1, 151))
+            adapterGen2.actualizarPokedex(db.pokemonDao().getGeneration(152, 251))
+            adapterGen3.actualizarPokedex(db.pokemonDao().getGeneration(252, 386))
+            adapterGen4.actualizarPokedex(db.pokemonDao().getGeneration(387, 493))
+            adapterGen5.actualizarPokedex(db.pokemonDao().getGeneration(494, 649))
+            Log.d("GEN5", "")
+            adapterGen6.actualizarPokedex(db.pokemonDao().getGeneration(650, 721))
+            Log.d("GEN6", "Se generan")
+            adapterGen7.actualizarPokedex(db.pokemonDao().getGeneration(722, 809))
+            Log.d("GEN7", "Se generan tambien")
+            adapterGen8.actualizarPokedex(db.pokemonDao().getGeneration(810, 898))
+            adapterGen9.actualizarPokedex(db.pokemonDao().getGeneration(899, 1010))
 
-                }
-            }
         }
     }
+
 }

@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -43,6 +44,12 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.picasso)
+
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation(libs.androidx.work.runtime.ktx)
+    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+
 
     // Firebase BoM para gestionar versiones automáticamente
     implementation(platform("com.google.firebase:firebase-bom:33.6.0"))

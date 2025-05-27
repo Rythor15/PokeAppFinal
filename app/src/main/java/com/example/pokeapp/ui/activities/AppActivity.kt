@@ -13,11 +13,15 @@ import androidx.core.view.children
 import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.commit
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.pokeapp.LoginMainActivity
 import com.example.pokeapp.R
 import com.example.pokeapp.data.models.ModelPokemon
 import com.example.pokeapp.databinding.ActivityAppBinding
 import com.example.pokeapp.ui.fragments.MenuFragment
+import com.example.pokeapp.ui.worker.PokemonSyncWorker
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -41,6 +45,12 @@ class AppActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val work = OneTimeWorkRequestBuilder<PokemonSyncWorker>().build()
+        WorkManager.getInstance(this).enqueueUniqueWork(
+            "sync_pokemons",
+            ExistingWorkPolicy.KEEP,
+            work
+        )
         iniciarFragment()
         drawerLayout = binding.drawerLayout
         auth = Firebase.auth

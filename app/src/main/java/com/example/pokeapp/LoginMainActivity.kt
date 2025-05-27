@@ -10,9 +10,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.pokeapp.data.models.ModelPokemon
 import com.example.pokeapp.databinding.ActivityLoginMainBinding
 import com.example.pokeapp.ui.activities.AppActivity
+import com.example.pokeapp.ui.worker.PokemonSyncWorker
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -50,6 +53,7 @@ class LoginMainActivity : AppCompatActivity() {
             Toast.makeText(this, "El usuario canceló", Toast.LENGTH_SHORT).show()
         }
     }
+
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityLoginMainBinding
     private var nombre = ""

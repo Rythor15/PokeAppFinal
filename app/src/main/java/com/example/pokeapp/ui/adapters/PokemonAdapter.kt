@@ -5,38 +5,38 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeapp.R
-import com.example.pokeapp.data.PokemonApi
+import com.example.pokeapp.data.api.PokemonEntity
 import com.example.pokeapp.databinding.LayoutPokemonBinding
 import com.squareup.picasso.Picasso
 
-class PokemonAdapter (
-    var pokeInfo: MutableList<PokemonApi>
-):  RecyclerView.Adapter<ViewHolderPokemon>() {
+class PokemonAdapter(
+    var pokeInfo: MutableList<PokemonEntity>
+) : RecyclerView.Adapter<ViewHolderPokemon>() {
 
-    fun actualizarPokedex(newList: List<PokemonApi>) {
+    fun actualizarPokedex(newList: List<PokemonEntity>) {
         pokeInfo.clear()
         pokeInfo.addAll(newList)
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderPokemon {
-        val v= LayoutInflater.from(parent.context).inflate(R.layout.layout_pokemon, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.layout_pokemon, parent, false)
         return ViewHolderPokemon(v)
     }
 
     override fun onBindViewHolder(holder: ViewHolderPokemon, position: Int) {
-        val pokemonInfo = pokeInfo[position]
-        holder.render(pokemonInfo)
+        val pokemon = pokeInfo[position]
+        holder.render(pokemon)
     }
 
     override fun getItemCount() = pokeInfo.size
-
 }
 
-class ViewHolderPokemon(v: View): RecyclerView.ViewHolder(v){
+class ViewHolderPokemon(v: View) : RecyclerView.ViewHolder(v) {
     val binding = LayoutPokemonBinding.bind(v)
 
-    fun render(pokemonInfo: PokemonApi){
-        Picasso.get().load(pokemonInfo.pokemonSprite.frontDefault).into(binding.imgPokemon)
+    fun render(pokemon: PokemonEntity) {
+        Picasso.get().cancelRequest(binding.imgPokemon)
+        Picasso.get().load(pokemon.imageUrl).into(binding.imgPokemon)
     }
 }

@@ -7,19 +7,37 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.commit
 import com.example.pokeapp.R
+import com.example.pokeapp.databinding.ActivityGamesBinding
 import com.example.pokeapp.ui.fragments.MenuFragment
 
 class GamesActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityGamesBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityGamesBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_games)
+        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
         iniciarFragmentMenu()
+        setListeners()
+    }
+
+    private fun setListeners() {
+        binding.btnCandycrush.setOnClickListener {
+
+        }
+        binding.btnPareja.setOnClickListener {
+
+        }
+        binding.btnPokerogue.setOnClickListener {
+
+        }
     }
 
     private fun iniciarFragmentMenu() {
