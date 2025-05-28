@@ -34,7 +34,7 @@ class GamesActivity : AppCompatActivity() {
             startActivity(Intent(this, CandyActivity::class.java))
         }
         binding.btnPareja.setOnClickListener {
-                startActivity(Intent(this, ParejasActivity::class.java))
+            startActivity(Intent(this, ParejasActivity::class.java))
         }
         binding.btnPokequiz.setOnClickListener {
             startActivity(Intent(this, PkmnQuizActivity::class.java))

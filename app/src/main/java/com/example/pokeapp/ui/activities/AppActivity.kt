@@ -2,15 +2,11 @@ package com.example.pokeapp.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.EditText
-import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.children
-import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.commit
 import androidx.work.ExistingWorkPolicy
@@ -18,11 +14,9 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.pokeapp.LoginMainActivity
 import com.example.pokeapp.R
-import com.example.pokeapp.data.models.ModelPokemon
 import com.example.pokeapp.databinding.ActivityAppBinding
 import com.example.pokeapp.ui.fragments.MenuFragment
 import com.example.pokeapp.ui.worker.PokemonSyncWorker
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

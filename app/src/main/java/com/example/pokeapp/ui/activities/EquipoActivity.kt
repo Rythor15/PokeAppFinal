@@ -12,15 +12,26 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pokeapp.R
+import com.example.pokeapp.data.api.ObjectApiPokemon.apiClient
+import com.example.pokeapp.data.api.PokemonApi
+import com.example.pokeapp.data.api.PokemonEntity
+import com.example.pokeapp.data.models.ModelEquipo
+import com.example.pokeapp.data.providers.PokemonProvider
 import com.example.pokeapp.databinding.ActivityEquipoBinding
+import com.example.pokeapp.ui.adapters.EquipoAdapter
 import com.example.pokeapp.ui.fragments.MenuFragment
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.util.ArrayList
 
 class EquipoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEquipoBinding
+    private lateinit var equipoAdapter: EquipoAdapter
+    private val pokemonProvider = PokemonProvider()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +45,8 @@ class EquipoActivity : AppCompatActivity() {
         }
         iniciarFragmentMenu()
         setListener()
+        setRecycler()
+        cargarEquipos()
     }
 
     private fun setListener() {
@@ -41,7 +54,102 @@ class EquipoActivity : AppCompatActivity() {
             startActivity(Intent(this, PokemonsActivity::class.java))
         }
 
+        val selectedPokemonList = intent.getSerializableExtra("equipo") as? ArrayList<PokemonEntity>
+        if (selectedPokemonList != null && selectedPokemonList.size == 6) {
+            saveEquipoToFirebase(selectedPokemonList)
+            // Una vez que se ha guardado, se puede limpiar el extra para evitar guardados duplicados
+            intent.removeExtra("equipo")
+        }
+    }
 
+    private fun saveEquipoToFirebase(selectedPokemon: List<PokemonEntity>) {
+        val database = FirebaseDatabase.getInstance().getReference("EquiposPokemon")
+        val equipoId = database.push().key ?: return
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            val fullPokemonData = mutableListOf<PokemonApi>()
+            for (pokemonEntity in selectedPokemon) {
+                try {
+                    // Realiza la llamada a la API para obtener los detalles completos del Pokémon
+                    val response = apiClient.getPokemonInfo(pokemonEntity.id)
+                    if (response.isSuccessful) {
+                        response.body()?.let { fullPokemonData.add(it) }
+                    } else {
+                        Log.e("EquipoActivity", "Error al obtener detalles de Pokémon ${pokemonEntity.id}: ${response.errorBody()?.string()}")
+                    }
+                } catch (e: Exception) {
+                    Log.e("EquipoActivity", "Excepción al obtener detalles de Pokémon ${pokemonEntity.id}: ${e.message}")
+                }
+            }
+
+            // Crear el ModelEquipo con los datos recopilados
+            val modelEquipo = ModelEquipo(id = (System.currentTimeMillis() % 1000000).toInt())
+            selectedPokemon.forEachIndexed { index, pokemonEntity ->
+                val fullData = fullPokemonData.find { it.id == pokemonEntity.id }
+                when (index) {
+                    0 -> {
+                        modelEquipo.pokemon1 = fullData?.nombre?.replaceFirstChar { it.uppercaseChar() } ?: ""
+                        modelEquipo.imgPokemon1 = pokemonEntity.imageUrl
+                        modelEquipo.imgPokemon1Tipo1 = fullData?.tipos?.getOrNull(0)?.tipo?.nombreTipo ?: ""
+                        modelEquipo.imgPokemon1Tipo2 = fullData?.tipos?.getOrNull(1)?.tipo?.nombreTipo ?: ""
+                    }
+                    1 -> {
+                        modelEquipo.pokemon2 = fullData?.nombre?.replaceFirstChar { it.uppercaseChar() } ?: ""
+                        modelEquipo.imgPokemon2 = pokemonEntity.imageUrl
+                        modelEquipo.imgPokemon2Tipo1 = fullData?.tipos?.getOrNull(0)?.tipo?.nombreTipo ?: ""
+                        modelEquipo.imgPokemon2Tipo2 = fullData?.tipos?.getOrNull(1)?.tipo?.nombreTipo ?: ""
+                    }
+                    2 -> {
+                        modelEquipo.pokemon3 = fullData?.nombre?.replaceFirstChar { it.uppercaseChar() } ?: ""
+                        modelEquipo.imgPokemon3 = pokemonEntity.imageUrl
+                        modelEquipo.imgPokemon3Tipo1 = fullData?.tipos?.getOrNull(0)?.tipo?.nombreTipo ?: ""
+                        modelEquipo.imgPokemon3Tipo2 = fullData?.tipos?.getOrNull(1)?.tipo?.nombreTipo ?: ""
+                    }
+                    3 -> {
+                        modelEquipo.pokemon4 = fullData?.nombre?.replaceFirstChar { it.uppercaseChar() } ?: ""
+                        modelEquipo.imgPokemon4 = pokemonEntity.imageUrl
+                        modelEquipo.imgPokemon4Tipo1 = fullData?.tipos?.getOrNull(0)?.tipo?.nombreTipo ?: ""
+                        modelEquipo.imgPokemon4Tipo2 = fullData?.tipos?.getOrNull(1)?.tipo?.nombreTipo ?: ""
+                    }
+                    4 -> {
+                        modelEquipo.pokemon5 = fullData?.nombre?.replaceFirstChar { it.uppercaseChar() } ?: ""
+                        modelEquipo.imgPokemon5 = pokemonEntity.imageUrl
+                        modelEquipo.imgPokemon5Tipo1 = fullData?.tipos?.getOrNull(0)?.tipo?.nombreTipo ?: ""
+                        modelEquipo.imgPokemon5Tipo2 = fullData?.tipos?.getOrNull(1)?.tipo?.nombreTipo ?: ""
+                    }
+                    5 -> {
+                        modelEquipo.pokemon6 = fullData?.nombre?.replaceFirstChar { it.uppercaseChar() } ?: ""
+                        modelEquipo.imgPokemon6 = pokemonEntity.imageUrl
+                        modelEquipo.imgPokemon6Tipo1 = fullData?.tipos?.getOrNull(0)?.tipo?.nombreTipo ?: ""
+                        modelEquipo.imgPokemon6Tipo2 = fullData?.tipos?.getOrNull(1)?.tipo?.nombreTipo ?: ""
+                    }
+                }
+            }
+
+            try {
+                database.child(equipoId).setValue(modelEquipo).await()
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@EquipoActivity, "Equipo guardado correctamente!", Toast.LENGTH_SHORT).show()
+                    cargarEquipos()
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@EquipoActivity, "Error al guardar el equipo: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun cargarEquipos() {
+        pokemonProvider.getDatos { equipos ->
+            equipoAdapter.updateEquipos(equipos)
+        }
+    }
+
+    private fun setRecycler() {
+        equipoAdapter = EquipoAdapter(mutableListOf())
+        binding.rvEquipo.layoutManager = GridLayoutManager(this,1)
+        binding.rvEquipo.adapter = equipoAdapter
     }
 
     private fun iniciarFragmentMenu() {
@@ -50,5 +158,14 @@ class EquipoActivity : AppCompatActivity() {
             setReorderingAllowed(true)
             add(R.id.menu_fragment, fragmentMenu)
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, AppActivity::class.java)
+        // Añade FLAG_ACTIVITY_CLEAR_TOP para limpiar la pila de actividades hasta AppActivity
+        // y FLAG_ACTIVITY_NEW_TASK para iniciarla como una nueva tarea si no está en la pila
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 }

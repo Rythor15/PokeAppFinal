@@ -4,13 +4,14 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 
 interface PokemonInterface {
     @GET("api/v2/pokemon/{id}")
-    suspend fun getPokemonInfo(@Path("id") id: Int): PokemonApi
+    suspend fun getPokemonInfo(@Path("id") id: Int): Response<PokemonApi>
 }
 
 @Dao

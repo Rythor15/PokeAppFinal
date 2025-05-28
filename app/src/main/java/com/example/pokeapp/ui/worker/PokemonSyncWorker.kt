@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.example.pokeapp.data.api.ObjectApiPokemon
 import com.example.pokeapp.data.api.ObjectApiPokemon.apiClient
 import com.example.pokeapp.data.api.PokemonEntity
 import com.example.pokeapp.data.db.AppDatabase
@@ -34,9 +33,16 @@ class PokemonSyncWorker(
 
             generaciones.forEach { (gen, rango) ->
                 rango.forEach { id ->
-                    val pokemon = apiClient.getPokemonInfo(id)
-                    if (pokemon != null) {
-                        dao.insertPokemon(PokemonEntity.fromApi(pokemon, gen))
+                    val response = apiClient.getPokemonInfo(id)
+                    if (response.isSuccessful) {
+                        val pokemonApi = response.body()
+                        if (pokemonApi != null) {
+                            dao.insertPokemon(PokemonEntity.fromApi(pokemonApi, gen))
+                        } else {
+                            Log.e("Worker", "Cuerpo de la respuesta de Pokémon ${id} es nulo.")
+                        }
+                    } else {
+                        Log.e("Worker", "Error de API al obtener Pokémon ${id}: ${response.code()}")
                     }
                 }
             }

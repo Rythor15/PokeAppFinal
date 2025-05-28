@@ -1,7 +1,10 @@
 package com.example.pokeapp.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import android.window.OnBackInvokedDispatcher
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,20 +21,22 @@ import com.example.pokeapp.ui.adapters.PokemonAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.ArrayList
 
 class PokemonsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPokemonsBinding
+    private val selectedPokemon = mutableSetOf<PokemonEntity>()
 
-    var adapterGen1 = PokemonAdapter(mutableListOf())
-    var adapterGen2 = PokemonAdapter(mutableListOf())
-    var adapterGen3 = PokemonAdapter(mutableListOf())
-    var adapterGen4 = PokemonAdapter(mutableListOf())
-    var adapterGen5 = PokemonAdapter(mutableListOf())
-    var adapterGen6 = PokemonAdapter(mutableListOf())
-    var adapterGen7 = PokemonAdapter(mutableListOf())
-    var adapterGen8 = PokemonAdapter(mutableListOf())
-    var adapterGen9 = PokemonAdapter(mutableListOf())
+    var adapterGen1 = PokemonAdapter(mutableListOf(), { pokemon, isSelected -> estaCompleto(pokemon, isSelected) }, selectedPokemon)
+    var adapterGen2 = PokemonAdapter(mutableListOf(), { pokemon, isSelected -> estaCompleto(pokemon, isSelected) }, selectedPokemon)
+    var adapterGen3 = PokemonAdapter(mutableListOf(), { pokemon, isSelected -> estaCompleto(pokemon, isSelected) }, selectedPokemon)
+    var adapterGen4 = PokemonAdapter(mutableListOf(), { pokemon, isSelected -> estaCompleto(pokemon, isSelected) }, selectedPokemon)
+    var adapterGen5 = PokemonAdapter(mutableListOf(), { pokemon, isSelected -> estaCompleto(pokemon, isSelected) }, selectedPokemon)
+    var adapterGen6 = PokemonAdapter(mutableListOf(), { pokemon, isSelected -> estaCompleto(pokemon, isSelected) }, selectedPokemon)
+    var adapterGen7 = PokemonAdapter(mutableListOf(), { pokemon, isSelected -> estaCompleto(pokemon, isSelected) }, selectedPokemon)
+    var adapterGen8 = PokemonAdapter(mutableListOf(), { pokemon, isSelected -> estaCompleto(pokemon, isSelected) }, selectedPokemon)
+    var adapterGen9 = PokemonAdapter(mutableListOf(), { pokemon, isSelected -> estaCompleto(pokemon, isSelected) }, selectedPokemon)
 
     val layoutManagerGen1 = GridLayoutManager(this,8)
     val layoutManagerGen2 = GridLayoutManager(this,8)
@@ -55,7 +60,38 @@ class PokemonsActivity : AppCompatActivity() {
             insets
         }
         setRecycler()
+        setListeners()
     }
+
+    private fun setListeners() {
+        binding.btnCrearEquipo.setOnClickListener {
+            if (selectedPokemon.size == 6) {
+                val intent = Intent(this, EquipoActivity::class.java)
+                // Convertir el MutableSet a ArrayList para pasarlo como Serializable
+                intent.putExtra("equipo", ArrayList(selectedPokemon))
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Selecciona 6 Pokémon", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun estaCompleto(pokemon: PokemonEntity, isSelected: Boolean) {
+        if (isSelected) {
+            if (selectedPokemon.size < 6) {
+                selectedPokemon.add(pokemon)
+            } else {
+                Toast.makeText(this, "Ya tienes 6 Pokémon en tu equipo", Toast.LENGTH_SHORT).show()
+                // Si el límite de selección se alcanza, es posible que quieras revertir el estado visual del Pokémon que se intentó seleccionar.
+                // Esto podría hacerse notificando al adaptador para que re-renderice ese elemento en particular.
+                // Por ahora, solo se muestra un Toast.
+            }
+        } else {
+            selectedPokemon.remove(pokemon)
+        }
+        Log.d("PokemonsActivity", "Selected Pokémon count: ${selectedPokemon.size}")
+    }
+
 
     private fun setRecycler() {
         binding.rvGen1.layoutManager = layoutManagerGen1
@@ -97,15 +133,10 @@ class PokemonsActivity : AppCompatActivity() {
             adapterGen3.actualizarPokedex(db.pokemonDao().getGeneration(252, 386))
             adapterGen4.actualizarPokedex(db.pokemonDao().getGeneration(387, 493))
             adapterGen5.actualizarPokedex(db.pokemonDao().getGeneration(494, 649))
-            Log.d("GEN5", "")
             adapterGen6.actualizarPokedex(db.pokemonDao().getGeneration(650, 721))
-            Log.d("GEN6", "Se generan")
             adapterGen7.actualizarPokedex(db.pokemonDao().getGeneration(722, 809))
-            Log.d("GEN7", "Se generan tambien")
             adapterGen8.actualizarPokedex(db.pokemonDao().getGeneration(810, 898))
             adapterGen9.actualizarPokedex(db.pokemonDao().getGeneration(899, 1010))
-
         }
     }
-
 }
