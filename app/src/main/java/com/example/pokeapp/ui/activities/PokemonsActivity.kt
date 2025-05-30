@@ -136,7 +136,7 @@ class PokemonsActivity : AppCompatActivity() {
             adapterGen6.actualizarPokedex(db.pokemonDao().getGeneration(650, 721))
             adapterGen7.actualizarPokedex(db.pokemonDao().getGeneration(722, 809))
             adapterGen8.actualizarPokedex(db.pokemonDao().getGeneration(810, 898))
-            adapterGen9.actualizarPokedex(db.pokemonDao().getGeneration(899, 1010))
+            adapterGen9.actualizarPokedex(db.pokemonDao().getGeneration(899, 1025))
         }
     }
 }

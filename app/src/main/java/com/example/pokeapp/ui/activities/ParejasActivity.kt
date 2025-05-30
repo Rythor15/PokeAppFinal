@@ -207,7 +207,7 @@ class ParejasActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun ponerPuntuacion() {
-        binding.tvScore.text = String.format(getString(R.string.puntuacion), puntuacion.toString())
+        binding.tvPuntuacion.text = String.format(getString(R.string.puntuacion), puntuacion.toString())
     }
 
     override fun onClick(v: View?) {

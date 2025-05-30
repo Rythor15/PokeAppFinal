@@ -13,8 +13,8 @@ import com.squareup.picasso.Picasso
 
 class EquipoAdapter(
     var equipos: MutableList<ModelEquipo>,
-    val onEditClick: (ModelEquipo) -> Unit,
-    val onDeleteClick: (ModelEquipo) -> Unit
+    //val onEditClick: (ModelEquipo) -> Unit,
+    //val onDeleteClick: (ModelEquipo) -> Unit
 ) : RecyclerView.Adapter<EquipoAdapter.EquipoViewHolder>() {
 
     fun updateEquipos(newEquipos: List<ModelEquipo>) {

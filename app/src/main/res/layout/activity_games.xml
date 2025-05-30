@@ -41,19 +41,19 @@
                 android:layout_width="170dp"
                 android:layout_height="120dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_candycrush"
+                app:layout_constraintEnd_toStartOf="@+id/btn_pokequiz"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5"
-                app:srcCompat="@drawable/shuffle_pokemon" />
+                app:srcCompat="@drawable/pokemon_quiz" />
 
             <Button
-                android:id="@+id/btn_candycrush"
+                android:id="@+id/btn_pokequiz"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Jugar CandyPoke"
+                android:text="Jugar PokeQuiz"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -87,7 +87,7 @@
                 android:layout_width="170dp"
                 android:layout_height="120dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_pokequiz"
+                app:layout_constraintEnd_toStartOf="@+id/btn_pokefill"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -95,12 +95,12 @@
                 app:srcCompat="@drawable/imagenpokequiz" />
 
             <Button
-                android:id="@+id/btn_pokequiz"
+                android:id="@+id/btn_pokefill"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="Jugar PokeQuiz"
+                android:text="Jugar PokeFill"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

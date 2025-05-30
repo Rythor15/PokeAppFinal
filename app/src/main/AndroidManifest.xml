@@ -18,7 +18,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activities.CandyActivity"
+            android:name=".ui.activities.PreguntasActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.PkmnQuizActivity"

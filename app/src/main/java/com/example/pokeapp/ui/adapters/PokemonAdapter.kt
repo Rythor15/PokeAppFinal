@@ -42,7 +42,7 @@ class ViewHolderPokemon(v: View, val onPokemonSelected: (PokemonEntity, Boolean)
     fun render(pokemon: PokemonEntity, isSelected: Boolean) {
         Picasso.get().cancelRequest(binding.imgPokemon)
         Picasso.get().load(pokemon.imageUrl).into(binding.imgPokemon)
-        //binding.imgPokemon.alpha = if (isSelected) 0.5f else 1.0f
+        binding.imgPokemon.alpha = if (isSelected) 0.5f else 1.0f
             itemView.setOnClickListener {
                 val estaSeleccionado = !selectedPokemon.contains(pokemon)
                 onPokemonSelected(pokemon, estaSeleccionado)

@@ -1,0 +1,422 @@
+[
+  {
+    "id": 1,
+    "text": "¿Cuál es el nombre del Pokémon inicial de fuego en Kanto?",
+    "options": ["Charmander", "Squirtle", "Pikachu", "Bulbasaur"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": false
+  },
+  {
+    "id": 2,
+    "text": "El tipo fuego le gana al tipo agua",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": true
+  },
+  {
+    "id": 3,
+    "text": "¿Cómo se llama el roedor eléctrico amarillo, mascota de la franquicia Pokémon?",
+    "options": ["Charmander", "Squirtle", "Pikachu", "Bulbasaur"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 4,
+    "text": "¿Qué objeto se usa para capturar Pokémon salvajes?",
+    "options": ["PokeCebo", "Pokeball", "Red de caza", "Caja de cartón"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": false
+  },
+  {
+    "id": 5,
+    "text": "¿Cuál es la evolución final de Squitle?",
+    "options": ["Wartortle", "Charizard", "Skarmory", "Blastoise"],
+    "correctAnswerIndex": 3,
+    "isTrueFalse": false
+  },
+  {
+    "id": 6,
+    "text": "Swirlix es un Pokémon",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": true
+  },
+  {
+    "id": 7,
+    "text": "¿De qué tipo es el Pokémon Geodude?",
+    "options": ["Tierra/Roca", "Tierra", "Roca", "Ninguno de los anteriores"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": false
+  },
+  {
+    "id": 8,
+    "text": "¿Cuántas medallas de gimnasio necesitas para desafiar la Liga Pokémon en la mayoría de los juegos?",
+    "options": ["10", "12", "8", "16"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 9,
+    "text": "¿Cuál es el nombre del profesor Pokémon de la región de Kanto?",
+    "options": ["Oak", "Serbal", "Elm", "Abedul"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": false
+  },
+  {
+    "id": 10,
+    "text": "Charizard es un Pokémon de tipo Fuego/Dragon",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": true
+  },
+  {
+    "id": 11,
+    "text": "¿Qué tipos son super efectivo contra el tipo Agua?",
+    "options": ["Planta", "Volador", "Electrico/Planta", "Volador/Hielo"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 12,
+    "text": "El tipo Luz es un nuevo tipo introducido en la cuarta generación",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": true
+  },
+  {
+    "id": 13,
+    "text": "¿Cuál es el nombre del equipo villano en la región de Kanto, liderado por Giovanni?",
+    "options": ["Team Berlin", "Team Rocket", "Team Galaxy", "Team Plasma"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": false
+  },
+  {
+    "id": 14,
+    "text": "Magikarp es de color rojo",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": true
+  },
+  {
+    "id": 15,
+    "text": "¿Qué tipo es el mejor contra los Pokémon de tipo eléctrico?",
+    "options": ["Tierra", "Roca", "Planta", "Dragon"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": false
+  },
+  {
+    "id": 16,
+    "text": "¿Cómo evoluciona Pikachu a Raichu?",
+    "options": ["Por nivel", "Piedra Trueno", "Intercambio", "Amistad + Nivel"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": false
+  },
+  {
+    "id": 17,
+    "text": "¿Cuál de los siguientes no es un Pokémon?",
+    "options": ["Agumon", "Pikachu", "Koraidon", "Sableye"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": false
+  },
+  {
+    "id": 18,
+    "text": "¿Que tipos son débiles contra el tipo planta?",
+    "options": ["Agua", "Tierra", "Roca", "Todas las opciones son correctas"],
+    "correctAnswerIndex": 3,
+    "isTrueFalse": false
+  },
+  {
+    "id": 19,
+    "text": "¿De que pueblo es el protagonista del anime Ash Ketchum?",
+    "options": ["Pueblo Arcilla", "Pueblo Paleta", "Pueblo Aromaflor", "Pueblo Escaso"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": false
+  },
+  {
+    "id": 20,
+    "text": "¿De que tipos son los tres iniciales?",
+    "options": ["Fuego", "Agua", "Todas las opciones son correctas", "Planta"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 21,
+    "text": "¿Qué Pokémon legendario es conocido como el \"Maestro de la Nieve\" y es de tipo Hielo/Volador?",
+    "options": ["Articuno", "Delibird", "Kyurem", "Walrein"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": false
+  },
+  {
+    "id": 22,
+    "text": "Blissey es el pokemon en forma base con más PS base de todos",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": true
+  },
+  {
+    "id": 23,
+    "text": "¿Qué Pokémon legendario de la región de Sinnoh está asociado con el concepto de tiempo?",
+    "options": ["Palkia", "Giratina", "Dialga", "Arceus"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 24,
+    "text": "¿Qué tipo de clima crea la habilidad \"Sequía\"",
+    "options": ["Lluvioso", "Arenoso", "Ventoso", "Soleado"],
+    "correctAnswerIndex": 3,
+    "isTrueFalse": false
+  },
+  {
+    "id": 25,
+    "text": "¿Qué Pokémon tiene la habilidad de copiar solo la habilidad de su oponente al entrar en batalla?",
+    "options": ["Ralts", "Zoroark", "Ditto", "Voltorb"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": false
+  },
+  {
+    "id": 26,
+    "text": "Alola es la región de los juegos Pokémon Sol y Pokémon Luna",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": true
+  },
+  {
+    "id": 27,
+    "text": "¿Cuál es el nombre de la región donde se introdujeron por primera vez los Pokémon tipo Hada?",
+    "options": ["Kalos", "Teselia", "Alola", "Sinnoh"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": false
+  },
+  {
+    "id": 28,
+    "text": "¿Qué dos tipos tiene el Pokémon Garchomp?",
+    "options": ["Dragon/Siniestro", "Dragon/Lucha", "Dragon/Tierra", "Dragon"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 29,
+    "text": "¿Cuántas diferentes evoluciones tiene Eevee?",
+    "options": ["8", "7", "9", "10"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": false
+  },
+  {
+    "id": 30,
+    "text": "Bidoof evoluciona a nivel 22 a Bibarel",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": true
+  },
+  {
+    "id": 31,
+    "text": "¿Qué movimiento de estado paraliza al oponente?",
+    "options": ["Somnifero", "Efecto Espora", "Onda Trueno", "Electricidad Estática"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 32,
+    "text": "La piedra eterna es un objeto que permite evolucionar a ciertos Pokémon",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": true
+  },
+  {
+    "id": 33,
+    "text": "¿En qué consiste la habilidad \"Intimidación\"?",
+    "options": ["Baja el Ataque del rival", "Baja la Defensa del rival", "Baja la Velocidad del rival", "Baja el Ataque Especial del rival"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": false
+  },
+  {
+    "id": 34,
+    "text": "Combee solo evoluciona si su género es hembra",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": true
+  },
+  {
+    "id": 35,
+    "text": "¿Qué ciudad/pueblo alberga el Laboratorio de Investigación del Profesor Oak en Kanto?",
+    "options": ["Pueblo Paleta", "Ciudad Verde", "Ciudad Plateada", "Ciudad Azulona"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": false
+  },
+  {
+    "id": 36,
+    "text": "¿Qué trío de Pokémon legendarios representa el océano, el continente y el cielo en la región de Hoenn?",
+    "options": ["Cobalion,Terrakion,Virizion", "Articuno,Zapdos,Moltres", "Kyogre,Groudon,Rayquaza", "Ninguno de los anteriores"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 37,
+    "text": "¿Cuál es el número de Pokémon total que hay en la pokédex de Kanto?",
+    "options": ["150", "149", "160", "151"],
+    "correctAnswerIndex": 3,
+    "isTrueFalse": false
+  },
+  {
+    "id": 38,
+    "text": "¿Qué movimiento de estado hace que el usuario duerma, pero le permite curarse todos sus PS?",
+    "options": ["Recuperación", "Alivio", "Descanso", "Reserva"],
+    "correctAnswerIndex": 3,
+    "isTrueFalse": false
+  },
+  {
+    "id": 39,
+    "text": "¿Qué es un Pokémon Shiny?",
+    "options": ["Un Pokémon de otra forma", "Un Pokémon de otro color", "Un Pokémon brillante", "Ninguna de las anteriores"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": false
+  },
+  {
+    "id": 40,
+    "text": "¿Cuál es el nombre de la Pokeball definitiva que nunca falla?",
+    "options": ["LujoBall", "UltraBall", "MasterBall", "MegaBall"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 41,
+    "text": "¿Cuál es la habilidad oculta de un Cinderace que le permite cambiar su tipo al del movimiento que usa?",
+    "options": ["Camuflaje", "Libero", "Mutatipo", "Cambio color"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 42,
+    "text": "Carbink evoluciona a Diancie",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": true
+  },
+  {
+    "id": 43,
+    "text": "¿Qué objeto evolutivo se utiliza para evolucionar a Dusclops en Dusknoir?",
+    "options": ["Piedra Noche", "Manto Oscuro", "Piedra Lunar", "Tela terrible"],
+    "correctAnswerIndex": 3,
+    "isTrueFalse": false
+  },
+  {
+    "id": 44,
+    "text": "¿Qué objeto permite al pokemon aguantar un golpe 1 vez al 100%?",
+    "options": ["Cinta Focus", "Banda Focus", "Ultima Baza", "Robustez"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": false
+  },
+  {
+    "id": 45,
+    "text": "¿Cuántos Pokémon hay en la Pokédex Nacional (hasta la última generación principal, es decir, la novena)?",
+    "options": ["1020", "1069", "1025", "1030"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 46,
+    "text": "Zekrom es el único Pokémon de tipo Dragon/Eléctrico",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": true
+  },
+  {
+    "id": 47,
+    "text": "¿Qué que Pokémon requiere que el jugador gire la consola para evolucionar?",
+    "options": ["Patrat", "Cubchoo", "Inkay", "Swirlix"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 48,
+    "text": "La quinta generación es la que más Pokémon nuevos introdujo en la Pokédex",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": true
+  },
+  {
+    "id": 49,
+    "text": "¿Qué MT (Máquina Técnica) permite enseñar el movimiento \"Rayo Hielo\" hasta la séptima generación?",
+    "options": ["MT13", "MT14", "MT24", "MT25"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": false
+  },
+  {
+    "id": 50,
+    "text": "Flygon tiene megaevolución",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": true
+  },
+  {
+    "id": 51,
+    "text": "¿Qué son los IVs?",
+    "options": ["Son los genes de cada pokemon", "Son el resultado de entrenar a tu pokemon", "Ninguna de las anteriores es correcta", "Son los impuestos de compra en Pokémon"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 52,
+    "text": "Wooper puede aprender puño hielo",
+    "options": ["Verdadero", "Falso"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": true
+  },
+  {
+    "id": 53,
+    "text": "¿Qué tipo de Poké Ball es la más efectiva para capturar Pokémon en cuevas o de noche?",
+    "options": ["LunaBall", "NocheBall", "DarkBall", "OcasoBall"],
+    "correctAnswerIndex": 3,
+    "isTrueFalse": false
+  },
+  {
+    "id": 54,
+    "text": "¿Cuántas formas ha tenido Pikachu al lo largo de los juegos de la franquicia?",
+    "options": ["17", "15", "16", "14"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": false
+  },
+  {
+    "id": 55,
+    "text": "¿Cuál es el único Pokémon que puede aprender Rayo Fusión por si solo?",
+    "options": ["Kyurem", "Koraidon", "Zekrom", "Electrivire"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 56,
+    "text": "¿A partir de la quinta generación, que objeto necesita feebas para evolucionar por intercambio?",
+    "options": ["Escama Plateada", "Escama Bella", "Escama Brillante", "Escama Preciosa"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": false
+  },
+  {
+    "id": 57,
+    "text": "¿En qué juego se introdujo por primera vez el 3D en Pokémon?",
+    "options": ["Pokemon X e Y", "PokePark", "Pokemon Blanco y Negro", "Pokemon Colosseum"],
+    "correctAnswerIndex": 3,
+    "isTrueFalse": false
+  },
+  {
+    "id": 58,
+    "text": "¿Como se llama la saga de juegos en la que te haces amigos de los Pokémon?",
+    "options": ["PokePark", "Pokemon Mundo Misterioso", "Pokemon Ranger", "Pokemon aventura entre teclas"],
+    "correctAnswerIndex": 0,
+    "isTrueFalse": false
+  },
+  {
+    "id": 59,
+    "text": "¿En que juego de la saga principal desaparecieron las MOs?",
+    "options": ["Pokemon X e Y", "Pokemon Espada y Escudo", "Pokemon Sol y Luna", "Pokemon Rubi Omega y Zafiro Alfa"],
+    "correctAnswerIndex": 2,
+    "isTrueFalse": false
+  },
+  {
+    "id": 60,
+    "text": "¿Cómo se llama la region de la primera entrega en la saga Pokémon Ranger?",
+    "options": ["Almia", "Floresta", "Oblivia", "Tunoz"],
+    "correctAnswerIndex": 1,
+    "isTrueFalse": false
+  }
+]
