@@ -27,7 +27,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_gen9"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="70dp"
@@ -45,14 +45,15 @@
                 android:fontFamily="@font/font_pokemon"
                 android:text="Generacion IX"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/rv_gen9"
-                app:layout_constraintStart_toStartOf="@+id/rv_gen9"
-                app:layout_constraintTop_toBottomOf="@+id/rv_gen8" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.38"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_gen9" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_gen8"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="70dp"
@@ -69,14 +70,15 @@
                 android:fontFamily="@font/font_pokemon"
                 android:text="Generacion VIII"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/rv_gen8"
-                app:layout_constraintStart_toStartOf="@+id/rv_gen8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.38"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_gen7" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_gen7"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="70dp"
@@ -93,14 +95,15 @@
                 android:fontFamily="@font/font_pokemon"
                 android:text="Generacion VII"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/rv_gen7"
-                app:layout_constraintStart_toStartOf="@+id/rv_gen7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.38"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_gen6" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_gen6"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="70dp"
@@ -117,15 +120,16 @@
                 android:fontFamily="@font/font_pokemon"
                 android:text="Generacion VI"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/rv_gen6"
-                app:layout_constraintStart_toStartOf="@+id/rv_gen6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.38"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_gen5" />
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_gen5"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="70dp"
@@ -142,14 +146,15 @@
                 android:fontFamily="@font/font_pokemon"
                 android:text="Generacion V"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/rv_gen5"
-                app:layout_constraintStart_toStartOf="@+id/rv_gen5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.38"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_gen4" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_gen4"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="70dp"
@@ -166,14 +171,15 @@
                 android:fontFamily="@font/font_pokemon"
                 android:text="Generacion IV"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/rv_gen4"
-                app:layout_constraintStart_toStartOf="@+id/rv_gen4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.38"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_gen3" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_gen3"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="70dp"
@@ -190,14 +196,15 @@
                 android:fontFamily="@font/font_pokemon"
                 android:text="Generacion III"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/rv_gen3"
-                app:layout_constraintStart_toStartOf="@+id/rv_gen3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.38"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_gen2" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_gen2"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="70dp"
@@ -214,14 +221,15 @@
                 android:fontFamily="@font/font_pokemon"
                 android:text="Generacion II"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/rv_gen2"
-                app:layout_constraintStart_toStartOf="@+id/rv_gen2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.38"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_gen1" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_gen1"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="70dp"
@@ -238,9 +246,9 @@
                 android:fontFamily="@font/font_pokemon"
                 android:text="Generacion I"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/rv_gen1"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/rv_gen1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.38"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
 

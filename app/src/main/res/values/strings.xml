@@ -31,5 +31,6 @@
     </string-array>
 
     <string name="puntuacion">"%s puntos"</string>
+    <string name="nombreEntrenadorTV">"Entrenador %s"</string>
 
 </resources>

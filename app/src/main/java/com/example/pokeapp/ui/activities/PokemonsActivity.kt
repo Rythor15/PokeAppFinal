@@ -3,6 +3,7 @@ package com.example.pokeapp.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import android.window.OnBackInvokedDispatcher
 import androidx.activity.enableEdgeToEdge
@@ -64,6 +65,16 @@ class PokemonsActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
+        binding.rvGen1.visibility = View.GONE
+        binding.rvGen2.visibility = View.GONE
+        binding.rvGen3.visibility = View.GONE
+        binding.rvGen4.visibility = View.GONE
+        binding.rvGen5.visibility = View.GONE
+        binding.rvGen6.visibility = View.GONE
+        binding.rvGen7.visibility = View.GONE
+        binding.rvGen8.visibility = View.GONE
+        binding.rvGen9.visibility = View.GONE
+
         binding.btnCrearEquipo.setOnClickListener {
             if (selectedPokemon.size == 6) {
                 val intent = Intent(this, EquipoActivity::class.java)
@@ -74,20 +85,59 @@ class PokemonsActivity : AppCompatActivity() {
                 Toast.makeText(this, "Selecciona 6 Pokémon", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.tvGen1.setOnClickListener {
+            cambiarVisibilidad(binding.rvGen1)
+        }
+        binding.tvGen2.setOnClickListener {
+            cambiarVisibilidad(binding.rvGen2)
+        }
+        binding.tvGen3.setOnClickListener {
+            cambiarVisibilidad(binding.rvGen3)
+        }
+        binding.tvGen4.setOnClickListener {
+            cambiarVisibilidad(binding.rvGen4)
+        }
+        binding.tvGen5.setOnClickListener {
+            cambiarVisibilidad(binding.rvGen5)
+        }
+        binding.tvGen6.setOnClickListener {
+            cambiarVisibilidad(binding.rvGen6)
+        }
+        binding.tvGen7.setOnClickListener {
+            cambiarVisibilidad(binding.rvGen7)
+        }
+        binding.tvGen8.setOnClickListener {
+            cambiarVisibilidad(binding.rvGen8)
+        }
+        binding.tvGen9.setOnClickListener {
+            cambiarVisibilidad(binding.rvGen9)
+        }
     }
 
-    private fun estaCompleto(pokemon: PokemonEntity, isSelected: Boolean) {
+    private fun cambiarVisibilidad(recycler: View) {
+        if (recycler.visibility == View.VISIBLE) {
+            recycler.visibility = View.GONE
+        } else {
+            recycler.visibility = View.VISIBLE
+        }
+    }
+
+    private fun estaCompleto(pokemon: PokemonEntity, isSelected: Boolean): Boolean {
         if (isSelected) {
             if (selectedPokemon.size < 6) {
                 selectedPokemon.add(pokemon)
+                return true
             } else {
                 Toast.makeText(this, "Ya tienes 6 Pokémon en tu equipo", Toast.LENGTH_SHORT).show()
                 // Si el límite de selección se alcanza, es posible que quieras revertir el estado visual del Pokémon que se intentó seleccionar.
                 // Esto podría hacerse notificando al adaptador para que re-renderice ese elemento en particular.
                 // Por ahora, solo se muestra un Toast.
+                return false
             }
         } else {
             selectedPokemon.remove(pokemon)
+            return true
         }
         Log.d("PokemonsActivity", "Selected Pokémon count: ${selectedPokemon.size}")
     }

@@ -5,6 +5,8 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
@@ -20,6 +22,7 @@ import androidx.fragment.app.commit
 import com.example.pokeapp.R
 import com.example.pokeapp.databinding.ActivityCompeticionBinding
 import com.example.pokeapp.ui.fragments.MenuFragment
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -27,8 +30,13 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
 
-// Hay que poner la fecha como parametro en el método ponerMarcador()
-// Para poder hacer el filtro con los calendarios
+
+// Clase de datos para contener la información del marcador, incluyendo el mes
+data class Marcador(
+    val coordenadas: LatLng,
+    val titulo: String,
+    val mes: String
+)
 
 class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -47,6 +55,7 @@ class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private lateinit var map: GoogleMap
+    private val marcadores = mutableListOf<Marcador>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,25 +67,34 @@ class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        iniciarFramentMapa()
+        ponerMarcadores()
+        iniciarFragmentMapa()
         iniciarFragmentMenu()
         personalizarSpinner()
+        setListeners()
+    }
+
+    private fun setListeners() {
+        binding.spinnerMeses.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedMonth = parent?.getItemAtPosition(position).toString().lowercase()
+                filtrarMostrarMarcadores(selectedMonth)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
     }
 
     private fun personalizarSpinner() {
-        val spinnerAnios: Spinner = findViewById(R.id.spinner_anios)
-        val spinnerMeses: Spinner = findViewById(R.id.spinner_meses)
-
-        val opcionesAnios = resources.getStringArray(R.array.array_anios)
+        val spinnerMeses: Spinner = binding.spinnerMeses
         val opcionesMeses = resources.getStringArray(R.array.array_meses)
-
-        val adapterAnios = ArrayAdapter(
-            this,
-            R.layout.spinner_item,
-            opcionesAnios
-        )
-        adapterAnios.setDropDownViewResource(R.layout.spinner_dropdown_item) // layout para el desplegable
-        spinnerAnios.adapter = adapterAnios
 
         val adapterMeses = ArrayAdapter(
             this,
@@ -89,27 +107,11 @@ class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun mensajesMarcadores() {
-        map.setOnMarkerClickListener {
-            var value = it.title.toString()
-            when (value) {
-                " Mundial Pokemon 2025" -> {
-                    Toast.makeText(this, String.format(getString(R.string.texto_toast) + " " + value), Toast.LENGTH_LONG).show()
-                    true
-                }
-                " Regional Pokemon Europa Reino Unido" -> {
-                    Toast.makeText(this, String.format(getString(R.string.texto_toast) + value), Toast.LENGTH_LONG).show()
-                    true
-                }
-                " Regional Pokemon Europa Suecia" -> {
-                    Toast.makeText(this, String.format(getString(R.string.texto_toast) + value), Toast.LENGTH_LONG).show()
-                    true
-                }
-                else -> {
-                    false
-                }
-
+            map.setOnMarkerClickListener { marcador ->
+                val value = marcador.title.toString()
+                Toast.makeText(this, String.format(value), Toast.LENGTH_SHORT).show()
+                true
             }
-        }
     }
 
     private fun iniciarFragmentMenu() {
@@ -120,7 +122,7 @@ class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    private fun iniciarFramentMapa() {
+    private fun iniciarFragmentMapa() {
         val fragmentMapa = SupportMapFragment()
         fragmentMapa.getMapAsync(this)
         supportFragmentManager.commit {
@@ -134,9 +136,7 @@ class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
         map = p0
         map.uiSettings.isZoomControlsEnabled=true
         gestionarLocalizacion()
-        ponerMarcador(LatLng(33.82475463077455, -117.90661939520065), " Mundial Pokemon 2025")
-        ponerMarcador(LatLng(52.44851528365187, -1.7185531875234843), " Regional Pokemon Europa Reino Unido")
-        ponerMarcador(LatLng(59.277428636742854, 18.01492628216522), " Regional Pokemon Europa Suecia")
+        filtrarMostrarMarcadores("-- Selecciona un mes --")
         mensajesMarcadores()
     }
 
@@ -144,6 +144,46 @@ class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
         val marker = MarkerOptions().position(coordenadas).title(titulo)
         map.addMarker(marker)
     }
+
+    private fun ponerMarcadores() {
+        marcadores.add(Marcador(LatLng(33.82475463077455, -117.90661939520065), " Mundial Pokemon 2025 California", "agosto"))
+        marcadores.add(Marcador(LatLng(44.4949, 11.3426), " Regional Pokemon Bolonia, Italia", "mayo"))
+        marcadores.add(Marcador(LatLng(-33.4489, -70.6693), " Regional Pokemon Santiago, Chile", "mayo"))
+        marcadores.add(Marcador(LatLng(29.938928457154105, -90.06341077391745), " Internacional Pokemon Nueva Orleans", "junio"))
+        marcadores.add(Marcador(LatLng(52.0907, 5.1214), " Regional Pokemon Utrecht, Paises Bajos", "mayo"))
+        marcadores.add(Marcador(LatLng(43.0389, -87.9065), " Regional Pokemon Milwaukee, EE.UU", "mayo"))
+        marcadores.add(Marcador(LatLng(45.5051, -122.6750), " Regional Pokemon Portland, EE.UU", "mayo"))
+        marcadores.add(Marcador(LatLng(-37.8136, 144.9631), " Regional Pokemon Melbourne, Australia", "mayo"))
+        marcadores.add(Marcador(LatLng(-29.7289, 31.0743), " Regional Pokemon Umhlanga Rocks, Sudáfrica", "mayo"))
+        marcadores.add(Marcador(LatLng(33.82475463077455, -117.90661939520065), " Mundial Pokemon 2026 California", "agosto"))
+    }
+
+    private fun filtrarMostrarMarcadores (mes: String){
+        map.clear()
+        if (mes.lowercase() == "-- Selecciona un mes --") {
+            marcadores.forEach {
+                ponerMarcador(it.coordenadas, it.titulo)
+            }
+        } else {
+            val filteredMarkers = marcadores.filter {
+                it.mes.lowercase() == mes.lowercase()
+            }
+            filteredMarkers.forEach {
+                ponerMarcador(it.coordenadas, it.titulo)
+            }
+            if (filteredMarkers.isNotEmpty()) {
+                map.animateCamera(
+                    CameraUpdateFactory.newLatLngZoom(filteredMarkers[0].coordenadas,10f),
+                    3500,
+                    null
+                )
+            }
+            if (filteredMarkers.isEmpty()) {
+                Toast.makeText(this, "No hay competiciones para ese mes", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 
     private fun gestionarLocalizacion() {
         if (!::map.isInitialized) return
@@ -163,6 +203,7 @@ class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
             pedirPermisos()
         }
     }
+
 
     private fun pedirPermisos() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)

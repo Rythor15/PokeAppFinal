@@ -1,5 +1,6 @@
 package com.example.pokeapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -79,7 +80,6 @@ class LoginMainActivity : AppCompatActivity() {
             registrar()
         }
         binding.btnGoogle.setOnClickListener {
-            Log.d("GOOGLE_LOGIN", "Botón de Google presionado")
             loginGoogle()
         }
     }
@@ -89,7 +89,6 @@ class LoginMainActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    //Si el usuario se ha creado vamos a iniciar sesion con él.
                     login()
                 }
             }
@@ -138,20 +137,22 @@ class LoginMainActivity : AppCompatActivity() {
 
             googleClient.signOut() // Fundamental para que no haga login automatico si he cerrado sesion
         // Basicamente sirve para que te permita registrarte con mas de una cuenta de google.
-        Log.d("GOOGLE_LOGIN", "Lanzando intent de Google")
         responseLauncher.launch(googleClient.signInIntent)
 
     }
 
     private fun irActivityApp(){
-        nombre = binding.etNombreEntrenador.text.toString().trim()
-        val bundle = Bundle().apply {
-            putString("NOMBRE", nombre)
-        }
-
+        guardarNombreEntrenador()
         val i = Intent(this, AppActivity::class.java)
-        i.putExtras(bundle)
         startActivity(i)
+    }
+
+    private fun guardarNombreEntrenador() {
+        val sharedPref = getSharedPreferences("pokeapp_prefs", Context.MODE_PRIVATE)
+        with (sharedPref.edit()) {
+            putString("NOMBRE_ENTRENADOR", binding.etNombreEntrenador.text.toString().trim())
+            apply()
+        }
     }
 
     override fun onStart() {

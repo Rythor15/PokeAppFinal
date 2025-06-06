@@ -104,20 +104,31 @@
 
     <Button
         android:id="@+id/btnRegistrar"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="62dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
+        android:backgroundTint="#ABFF4444"
+        android:fontFamily="@font/font_pokemon"
+        android:paddingTop="8dp"
         android:text="Registrate"
+        android:textColor="#CD000000"
+        android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:fontFamily="@font/font_pokemon"
+        android:lineSpacingExtra="8sp"
+        android:paddingTop="8dp"
         android:text="Inicio Sesión"
+        android:textColor="#CD000000"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/btnRegistrar"
         app:layout_constraintStart_toEndOf="@+id/btnRegistrar"
         app:layout_constraintTop_toTopOf="@+id/btnRegistrar" />

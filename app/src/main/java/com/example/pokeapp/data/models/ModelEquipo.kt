@@ -3,7 +3,9 @@ package com.example.pokeapp.data.models
 import java.io.Serializable
 
 data class ModelEquipo(
+    var firebaseKey: String = "",
     var id: Int = 0,
+    var userId: String = "",
     var pokemon1: String = "",
     var pokemon2: String = "",
     var pokemon3: String = "",

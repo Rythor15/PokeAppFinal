@@ -45,6 +45,7 @@ class AppActivity : AppCompatActivity() {
             ExistingWorkPolicy.KEEP,
             work
         )
+
         iniciarFragment()
         drawerLayout = binding.drawerLayout
         auth = Firebase.auth
@@ -52,7 +53,11 @@ class AppActivity : AppCompatActivity() {
     }
 
     private fun iniciarFragment() {
-        val fragment = MenuFragment()
+        val fragment = MenuFragment().apply {
+            arguments = Bundle().apply {
+                putString("NOMBRE_ENTRENADOR", intent.getStringExtra("NOMBRE_ENTRENADOR"))
+            }
+        }
         supportFragmentManager.commit {
             setReorderingAllowed(true)
             add(R.id.menu_fragment, fragment)
@@ -76,7 +81,11 @@ class AppActivity : AppCompatActivity() {
             startActivity(Intent(this, GamesActivity::class.java))
         }
         binding.btnEquipos.setOnClickListener {
-            startActivity(Intent(this, EquipoActivity::class.java))
+            val nombreEntrenador = intent.getStringExtra("NOMBRE_ENTRENADOR")
+            val intentNombre = Intent(this, EquipoActivity::class.java).apply {
+                putExtra("NOMBRE_ENTRENADOR", nombreEntrenador)
+            }
+            startActivity(intentNombre)
         }
         binding.imgMenu.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)

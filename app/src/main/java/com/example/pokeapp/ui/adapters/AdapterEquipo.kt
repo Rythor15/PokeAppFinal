@@ -13,8 +13,7 @@ import com.squareup.picasso.Picasso
 
 class EquipoAdapter(
     var equipos: MutableList<ModelEquipo>,
-    //val onEditClick: (ModelEquipo) -> Unit,
-    //val onDeleteClick: (ModelEquipo) -> Unit
+    val onDeleteClick: (ModelEquipo) -> Unit
 ) : RecyclerView.Adapter<EquipoAdapter.EquipoViewHolder>() {
 
     fun updateEquipos(newEquipos: List<ModelEquipo>) {
@@ -25,7 +24,7 @@ class EquipoAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EquipoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.cv_equipos, parent, false)
-        return EquipoViewHolder(view)
+        return EquipoViewHolder(view, onDeleteClick)
     }
 
     override fun onBindViewHolder(holder: EquipoViewHolder, position: Int) {
@@ -35,7 +34,7 @@ class EquipoAdapter(
 
     override fun getItemCount() = equipos.size
 
-    class EquipoViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+    class EquipoViewHolder(v: View, private val onDeleteClick: (ModelEquipo) -> Unit) : RecyclerView.ViewHolder(v) {
         private val binding = CvEquiposBinding.bind(v)
 
         fun render(equipo: ModelEquipo) {
@@ -68,6 +67,10 @@ class EquipoAdapter(
             loadImageType(equipo.imgPokemon5Tipo2, binding.ivPokemon5Tipo2)
             loadImageType(equipo.imgPokemon6Tipo1, binding.ivPokemon6Tipo1)
             loadImageType(equipo.imgPokemon6Tipo2, binding.ivPokemon6Tipo2)
+
+            binding.imgBtnBorrar.setOnClickListener {
+                onDeleteClick(equipo)
+            }
         }
 
         private fun loadImageType(typeName: String, imageView: ImageView) {

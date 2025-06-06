@@ -1,5 +1,7 @@
 package com.example.pokeapp.ui.activities
 
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +22,7 @@ import com.example.pokeapp.data.providers.PokemonProvider
 import com.example.pokeapp.databinding.ActivityEquipoBinding
 import com.example.pokeapp.ui.adapters.EquipoAdapter
 import com.example.pokeapp.ui.fragments.MenuFragment
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -47,6 +50,14 @@ class EquipoActivity : AppCompatActivity() {
         setListener()
         setRecycler()
         cargarEquipos()
+        cargarNombreEntrenador()
+    }
+
+    private fun cargarNombreEntrenador() {
+        val sharedPref = getSharedPreferences("pokeapp_prefs", Context.MODE_PRIVATE)
+        val nombreEntrenador = sharedPref.getString("NOMBRE_ENTRENADOR", "") // Default value
+        binding.nombreEntrenador.text = getString(R.string.nombreEntrenadorTV, nombreEntrenador)
+
     }
 
     private fun setListener() {
@@ -66,6 +77,11 @@ class EquipoActivity : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance().getReference("EquiposPokemon")
         val equipoId = database.push().key ?: return
 
+        val userId = FirebaseAuth.getInstance().currentUser?.uid // Get current user's UID
+        if (userId == null) {
+            Toast.makeText(this, "Error: Usuario no autenticado.", Toast.LENGTH_SHORT).show()
+            return
+        }
         lifecycleScope.launch(Dispatchers.IO) {
             val fullPokemonData = mutableListOf<PokemonApi>()
             for (pokemonEntity in selectedPokemon) {
@@ -84,6 +100,9 @@ class EquipoActivity : AppCompatActivity() {
 
             // Crear el ModelEquipo con los datos recopilados
             val modelEquipo = ModelEquipo(id = (System.currentTimeMillis() % 1000000).toInt())
+            modelEquipo.firebaseKey = equipoId
+            modelEquipo.userId = userId
+
             selectedPokemon.forEachIndexed { index, pokemonEntity ->
                 val fullData = fullPokemonData.find { it.id == pokemonEntity.id }
                 when (index) {
@@ -141,13 +160,24 @@ class EquipoActivity : AppCompatActivity() {
     }
 
     private fun cargarEquipos() {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId == null) {
+            Toast.makeText(this, "Error: Usuario no autenticado para cargar equipos.", Toast.LENGTH_SHORT).show()
+            equipoAdapter.updateEquipos(emptyList()) // Clear teams if no user is logged in
+            return
+        }
         pokemonProvider.getDatos { equipos ->
-            equipoAdapter.updateEquipos(equipos)
+            val userEquipos = equipos.filter { it.userId == userId }
+            equipoAdapter.updateEquipos(userEquipos)
         }
     }
 
     private fun setRecycler() {
-        equipoAdapter = EquipoAdapter(mutableListOf())
+        equipoAdapter = EquipoAdapter(
+            mutableListOf(),
+            onDeleteClick = { equipo -> onDeleteEquipo(equipo) }
+        )
+
         binding.rvEquipo.layoutManager = GridLayoutManager(this,1)
         binding.rvEquipo.adapter = equipoAdapter
     }
@@ -167,5 +197,41 @@ class EquipoActivity : AppCompatActivity() {
         // y FLAG_ACTIVITY_NEW_TASK para iniciarla como una nueva tarea si no está en la pila
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
+    }
+
+    private fun onDeleteEquipo(equipo: ModelEquipo) {
+        AlertDialog.Builder(this)
+            .setTitle("Confirmar eliminación")
+            .setMessage("¿Estás seguro de que quieres borrar el equipo?")
+            .setPositiveButton("Sí") { dialog, _ ->
+                deleteEquipoFirebase(equipo)
+                dialog.dismiss()
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun deleteEquipoFirebase(equipo: ModelEquipo) {
+        val database = FirebaseDatabase.getInstance().getReference("EquiposPokemon")
+
+        if (equipo.firebaseKey.isNotEmpty()) {
+            lifecycleScope.launch(Dispatchers.IO) {
+                try {
+                    database.child(equipo.firebaseKey).removeValue().await()
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@EquipoActivity, "Equipo eliminado correctamente.", Toast.LENGTH_SHORT).show()
+                        cargarEquipos() // Recargar la lista después de borrar
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@EquipoActivity, "Error al eliminar equipo: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        } else {
+            Toast.makeText(this@EquipoActivity, "No se pudo eliminar el equipo: clave de Firebase no encontrada.", Toast.LENGTH_SHORT).show()
+        }
     }
 }
