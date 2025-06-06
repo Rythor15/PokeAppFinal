@@ -1,5 +1,6 @@
 package com.example.pokeapp
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -108,6 +109,11 @@ class LoginMainActivity : AppCompatActivity() {
             binding.etPassword.error = "Error, la contraseña debe tener al menos 6 carácteres"
             return false
         }
+        nombre = binding.etNombreEntrenador.text.toString().trim()
+        if (nombre.isEmpty()) {
+            binding.etNombreEntrenador.error = "Se esperaba un nombre de entrenador"
+            return false
+        }
 
         return true
     }
@@ -150,7 +156,11 @@ class LoginMainActivity : AppCompatActivity() {
     private fun guardarNombreEntrenador() {
         val sharedPref = getSharedPreferences("pokeapp_prefs", Context.MODE_PRIVATE)
         with (sharedPref.edit()) {
-            putString("NOMBRE_ENTRENADOR", binding.etNombreEntrenador.text.toString().trim())
+            if (binding.etNombreEntrenador.text.toString().trim().isNotEmpty()) {
+                putString("NOMBRE_ENTRENADOR", binding.etNombreEntrenador.text.toString().trim())
+            } else {
+                putString("NOMBRE_ENTRENADOR", "Chano")
+            }
             apply()
         }
     }

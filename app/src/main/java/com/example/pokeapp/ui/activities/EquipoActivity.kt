@@ -55,7 +55,7 @@ class EquipoActivity : AppCompatActivity() {
 
     private fun cargarNombreEntrenador() {
         val sharedPref = getSharedPreferences("pokeapp_prefs", Context.MODE_PRIVATE)
-        val nombreEntrenador = sharedPref.getString("NOMBRE_ENTRENADOR", "") // Default value
+        val nombreEntrenador = sharedPref.getString("NOMBRE_ENTRENADOR","") // Default value
         binding.nombreEntrenador.text = getString(R.string.nombreEntrenadorTV, nombreEntrenador)
 
     }
