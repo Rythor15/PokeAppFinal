@@ -1,4 +1,4 @@
-# POKEAPPFINAL
+# POKEAPP
 
 Unleash Your Pokémon Adventure, Engage and Explore!
 
