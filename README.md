@@ -19,8 +19,6 @@ Aquí puedes añadir los íconos de las tecnologías que usas, por ejemplo:
 * [Primeros Pasos](#-primeros-pasos)
     * [Prerrequisitos](#prerrequisitos)
     * [Instalación](#instalación)
-* [Uso](#-uso)
-* [Pruebas](#-pruebas)
 
 ---
 
