@@ -1,10 +1,6 @@
 # POKEAPP
 ¡Desata tu aventura Pokémon, participa y explora!
 
-Último commit: el viernes pasado
-Lenguaje principal: [Kotlin](https://kotlinlang.org/) (100%)
-Lenguajes usados: 1
-
 ---
 
 ## 🛠️ Construido con
