@@ -1,81 +1,77 @@
 # POKEAPP
+¡Desata tu aventura Pokémon, participa y explora!
 
-Unleash Your Pokémon Adventure, Engage and Explore!
+Último commit: el viernes pasado
+Lenguaje principal: [Kotlin](https://kotlinlang.org/) (100%)
+Lenguajes usados: 1
 
-last commit last friday | kotlin 100.0% | languages 1
+---
 
-Built with the tools and technologies:
-
-![JSON](https://img.shields.io/badge/JSON-black?style=for-the-badge&logo=json&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=firebase&logoColor=white)
-![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+## 🛠️ Construido con
+Aquí puedes añadir los íconos de las tecnologías que usas, por ejemplo:
+![Kotlin](https://img.shields.io/badge/Kotlin-0095D5?style=for-the-badge&logo=kotlin&logoColor=white)
 ![Gradle](https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)
-![XML](https://img.shields.io/badge/XML-00599C?style=for-the-badge&logo=xml&logoColor=white)
-![Google](https://img.shields.io/badge/Google-4285F4?style=for-the-badge&logo=google&logoColor=white)
-![dm](https://img.shields.io/badge/dm-darkorange?style=for-the-badge)  ![bat](https://img.shields.io/badge/bat-orange?style=for-the-badge) ![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)
+---
 
-## Table of Contents
+## 📖 Tabla de Contenidos
+* [Visión General](#-visión-general)
+* [¿Por qué PokeAppFinal?](#-por-qué-pokeappfinal)
+* [Primeros Pasos](#-primeros-pasos)
+    * [Prerrequisitos](#prerrequisitos)
+    * [Instalación](#instalación)
+* [Uso](#-uso)
+* [Pruebas](#-pruebas)
 
-* [Overview](#overview)
-* [Getting Started](#getting-started)
-    * [Prerequisites](#prerequisites)
-    * [Installation](#installation)
-    * [Usage](#usage)
-    * [Testing](#testing)
+---
 
-## Overview
+## 📝 Visión General
+**PokeAppFinal** es una innovadora aplicación para Android diseñada para entusiastas de Pokémon, que ofrece una rica experiencia interactiva que combina jugabilidad, gestión de datos y participación del usuario.
 
-PokeAppFinal is an innovative Android application designed for Pokémon enthusiasts, offering a rich interactive experience that combines gameplay, data management, and user engagement.
+---
 
-### Why PokeAppFinal?
+## 🤔 ¿Por qué PokeAppFinal?
+Este proyecto tiene como objetivo crear un ecosistema vibrante para los fans de Pokémon, asegurando una experiencia de usuario fluida a través de sus características principales:
 
-This project aims to create a vibrant ecosystem for Pokémon fans, ensuring a seamless user experience through its core features:
+* **Configuración de Construcción Integral**: Simplifica la configuración del proyecto y la gestión de dependencias para un desarrollo consistente.
+* **Autenticación de Usuario**: Soporta múltiples métodos de inicio de sesión, mejorando la seguridad y la experiencia del usuario.
+* **Mecánicas de Juego Dinámicas**: Características de juego atractivas que se adaptan a las preferencias del usuario para una experiencia personalizada.
+* **Sincronización de Datos Fluida**: Automatiza las actualizaciones para mantener la información de Pokémon actualizada y relevante.
+* **Interfaz de Usuario Intuitiva**: Facilita la navegación e interacción fluidas, mejorando la participación del usuario.
+* **Marco de Pruebas Robusto**: Asegura una alta calidad y fiabilidad del código a través de prácticas de prueba exhaustivas.
 
-* **Comprehensive Build Configuration**: Streamlines project setup and dependency management for consistent development.
-* **User Authentication**: Supports multiple sign-in methods, enhancing security and user experience.
-* **Dynamic Gameplay Mechanics**: Engaging game features that adapt to user preferences for a personalized experience.
-* **Seamless Data Synchronization**: Automates updates to keep Pokémon information current and relevant.
-* **Intuitive User Interface**: Facilitates smooth navigation and interaction, enhancing user engagement.
-* **Robust Testing Framework**: Ensures high code quality and reliability through comprehensive testing practices.
+---
 
-## Getting Started
+## 🚀 Primeros Pasos
 
-### Prerequisites
+### Prerrequisitos
+Para construir y ejecutar este proyecto, necesitarás las siguientes dependencias:
 
-This project requires the following dependencies:
+* **Lenguaje de Programación**: [Kotlin](https://kotlinlang.org/)
+* **Gestor de Paquetes**: [Gradle](https://gradle.org/)
 
-* **Programming Language**: Kotlin
-* **Package Manager**: Gradle
+### Instalación
+Sigue estos pasos para construir PokeAppFinal desde el código fuente e instalar las dependencias:
 
-### Installation
-
-Build PokeAppFinal from the source and install dependencies:
-
-1.  Clone the repository:
-
+1.  **Clona el repositorio**:
     ```bash
     git clone [https://github.com/Rythor15/PokeAppFinal](https://github.com/Rythor15/PokeAppFinal)
     ```
+    También puedes acceder al repositorio aquí: [Repositorio PokeAppFinal en GitHub](https://github.com/Rythor15/PokeAppFinal)
 
-2.  Navigate to the project directory:
-
+2.  **Navega al directorio del proyecto**:
     ```bash
     cd PokeAppFinal
     ```
 
-3.  Install the dependencies:
-
-    Using `gradle`:
-
+3.  **Instala las dependencias** usando Gradle:
     ```bash
     gradle build
     ```
 
-### Usage
+---
 
-Run the project with:
-
-Using `gradle`:
+## ▶️ Uso
+Para ejecutar el proyecto, utiliza Gradle:
 
 ```bash
 gradle run
