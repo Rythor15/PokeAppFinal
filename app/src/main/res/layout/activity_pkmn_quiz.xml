@@ -14,7 +14,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,4 +48,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/info_pokefill"
+        android:layout_width="40dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_question_mark_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

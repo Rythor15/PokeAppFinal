@@ -7,6 +7,7 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -45,6 +46,17 @@ class PkmnQuizActivity : AppCompatActivity() {
     private fun setListeners() {
         binding.swipe.setOnRefreshListener {
             binding.wbPokerogue.reload()
+        }
+        binding.infoPokefill.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("PokeFill")
+                .setMessage("En esta pantalla podrás adivinar los pokémon de la pokedex.\n" +
+                        "Debes seleccionar una opción de las que aparece en la pantalla.\n" +
+                        "Tienes desde adivinarlos por generaciones y por tipos.")
+                .setCancelable(false)
+                .setPositiveButton("ACEPTAR", null)
+                .create()
+                .show()
         }
     }
 

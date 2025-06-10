@@ -90,6 +90,16 @@ class CompeticionActivity : AppCompatActivity(), OnMapReadyCallback {
 
             }
         }
+        binding.info.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Torneos")
+                .setMessage("En esta pantalla podras informarte acerca de los torneos que hay sobre Pokemon competitivo.\n" +
+                        "Para poder buscar la localización de un torneo según el mes que quieras tienes que pulsar sobre  (-- Selecciona un mes --)  y luego seleccionar el mes que quieras.")
+                .setCancelable(false)
+                .setPositiveButton("ACEPTAR", null)
+                .create()
+                .show()
+        }
     }
 
     private fun personalizarSpinner() {

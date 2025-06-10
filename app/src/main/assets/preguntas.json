@@ -283,7 +283,7 @@
     "id": 41,
     "text": "¿Cuál es la habilidad oculta de un Cinderace que le permite cambiar su tipo al del movimiento que usa?",
     "options": ["Camuflaje", "Libero", "Mutatipo", "Cambio color"],
-    "correctAnswerIndex": 2,
+    "correctAnswerIndex": 1,
     "isTrueFalse": false
   },
   {

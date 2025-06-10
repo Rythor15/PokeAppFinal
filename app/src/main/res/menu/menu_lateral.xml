@@ -6,8 +6,4 @@
         android:id="@+id/it_cerrar"
         android:icon="@drawable/baseline_logout_24"
         android:title="Cerrar Sesion" />
-    <item
-        android:id="@+id/it_salir"
-        android:icon="@drawable/baseline_exit_to_app_24"
-        android:title="Salir" />
 </menu>

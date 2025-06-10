@@ -49,6 +49,7 @@ class AppActivity : AppCompatActivity() {
         iniciarFragment()
         drawerLayout = binding.drawerLayout
         auth = Firebase.auth
+        informarLogin()
         setListeners()
     }
 
@@ -70,10 +71,6 @@ class AppActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginMainActivity::class.java))
             true
         }
-        binding.navigationView.menu.getItem(1).setOnMenuItemClickListener {
-            finishAffinity()
-            true
-        }
         binding.btnInformacion.setOnClickListener {
             startActivity(Intent(this, CompeticionActivity::class.java))
         }
@@ -90,5 +87,15 @@ class AppActivity : AppCompatActivity() {
         binding.imgMenu.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
+    }
+
+    fun informarLogin() {
+        val emailLogin = intent.getStringExtra("GMAIL_LOGIN")
+        binding.textView2.text = getString(R.string.nombreLogin, emailLogin)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
     }
 }

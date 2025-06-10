@@ -32,5 +32,6 @@
 
     <string name="puntuacion">"%s puntos"</string>
     <string name="nombreEntrenadorTV">"Entrenador %s"</string>
+    <string name="nombreLogin">"Usuario: %s"</string>W
 
 </resources>

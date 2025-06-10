@@ -149,7 +149,7 @@ class LoginMainActivity : AppCompatActivity() {
 
     private fun irActivityApp(){
         guardarNombreEntrenador()
-        val i = Intent(this, AppActivity::class.java)
+        val i = Intent(this, AppActivity::class.java).putExtra("GMAIL_LOGIN", auth.currentUser?.email)
         startActivity(i)
     }
 

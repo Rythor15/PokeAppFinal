@@ -76,7 +76,6 @@ class EquipoActivity : AppCompatActivity() {
     private fun saveEquipoToFirebase(selectedPokemon: List<PokemonEntity>) {
         val database = FirebaseDatabase.getInstance().getReference("EquiposPokemon")
         val equipoId = database.push().key ?: return
-
         val userId = FirebaseAuth.getInstance().currentUser?.uid // Get current user's UID
         if (userId == null) {
             Toast.makeText(this, "Error: Usuario no autenticado.", Toast.LENGTH_SHORT).show()

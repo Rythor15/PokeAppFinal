@@ -39,15 +39,15 @@ class PokemonsActivity : AppCompatActivity() {
     var adapterGen8 = PokemonAdapter(mutableListOf(), { pokemon, isSelected -> estaCompleto(pokemon, isSelected) }, selectedPokemon)
     var adapterGen9 = PokemonAdapter(mutableListOf(), { pokemon, isSelected -> estaCompleto(pokemon, isSelected) }, selectedPokemon)
 
-    val layoutManagerGen1 = GridLayoutManager(this,8)
-    val layoutManagerGen2 = GridLayoutManager(this,8)
-    val layoutManagerGen3 = GridLayoutManager(this,8)
-    val layoutManagerGen4 = GridLayoutManager(this,8)
-    val layoutManagerGen5 = GridLayoutManager(this,8)
-    val layoutManagerGen6 = GridLayoutManager(this,8)
-    val layoutManagerGen7 = GridLayoutManager(this,8)
-    val layoutManagerGen8 = GridLayoutManager(this,8)
-    val layoutManagerGen9 = GridLayoutManager(this,8)
+    val layoutManagerGen1 = GridLayoutManager(this,5)
+    val layoutManagerGen2 = GridLayoutManager(this,5)
+    val layoutManagerGen3 = GridLayoutManager(this,5)
+    val layoutManagerGen4 = GridLayoutManager(this,5)
+    val layoutManagerGen5 = GridLayoutManager(this,5)
+    val layoutManagerGen6 = GridLayoutManager(this,5)
+    val layoutManagerGen7 = GridLayoutManager(this,5)
+    val layoutManagerGen8 = GridLayoutManager(this,5)
+    val layoutManagerGen9 = GridLayoutManager(this,5)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
